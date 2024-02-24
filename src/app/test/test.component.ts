@@ -13,7 +13,11 @@ export class TestComponent implements OnInit, OnChanges {
     this.cdRef.detach()
    }
   ngOnChanges(changes: SimpleChanges): void {
-    throw new Error('Method not implemented.');
+    //console.log(changes);
+    if(this.users.length > 4) {
+      this.cdRef.detectChanges();
+    }
+    
   }
 
   //  ngOnChanges(changes: SimpleChanges): void {
@@ -25,3 +29,14 @@ export class TestComponent implements OnInit, OnChanges {
   }
 
 }
+
+class Wallet {
+  constructor(private amount: number, private test: string) { }
+}
+
+class Person {
+  constructor (private wallet:Wallet) {}
+}
+
+const w = new Wallet (250, 'eho');
+const p = new Person (w);
