@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef, OnChanges, SimpleChanges, Injector  } from '@angular/core';
 import { AppComponent } from '../app.component';
+import { myCustomToken } from '../app.module';
 
 @Component({
   selector: 'app-test',
@@ -15,7 +16,14 @@ export class TestComponent implements OnInit, OnChanges {
     private injector: Injector
     ) {
     this.cdRef.detach()
-    console.log(this.injector.get(this.users[1].name))
+
+    const value = this.injector.get(myCustomToken, null);
+    console.log(value);
+
+    const appComponent = this.injector.get(AppComponent);
+    // appComponent.users[0].name = 'ha-ha'
+    // console.log(appComponent.users);
+    
     //this.injector.get(users[1])
    }
   ngOnChanges(changes: SimpleChanges): void {
@@ -35,14 +43,3 @@ export class TestComponent implements OnInit, OnChanges {
   }
 
 }
-
-class Wallet {
-  constructor(private amount: number, private test: string) { }
-}
-
-class Person {
-  constructor (private wallet:Wallet) {}
-}
-
-const w = new Wallet (250, 'eho');
-const p = new Person (w);

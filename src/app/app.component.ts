@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, Optional } from '@angular/core';
 
 import { MyClass, myCustomToken } from './app.module';
 
@@ -20,7 +20,7 @@ export class AppComponent {
 
   constructor(
 
-    @Inject (myCustomToken) test1: string,
+   @Optional() @Inject (myCustomToken) test1: string,
                     // or up down
     test: MyClass   //== @Inject (MyClass) test:Myclass - Angular is make simple and it doesn't matter anymore
     //@Inject('Test') test: string
