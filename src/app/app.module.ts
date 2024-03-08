@@ -1,4 +1,4 @@
-import { NgModule, Provider } from '@angular/core';
+import { InjectionToken, NgModule, Provider } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -10,9 +10,12 @@ export class MyClass {
   }
 }
 
+export const myCustomToken = new InjectionToken ('Test');
+
 const myProvider: Provider = {
   useClass: MyClass,
-  provide: MyClass
+  //provide: MyClass
+  provide: myCustomToken
   //useValue:123,
   //provide: 'Test'
 }

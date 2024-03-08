@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 
-import { MyClass } from './app.module';
+import { MyClass, myCustomToken } from './app.module';
 
 @Component({
   selector: 'app-root',
@@ -19,13 +19,16 @@ export class AppComponent {
   ];
 
   constructor(
-    
+
+    @Inject (myCustomToken) test1: string,
+                    // or up down
     test: MyClass   //== @Inject (MyClass) test:Myclass - Angular is make simple and it doesn't matter anymore
     //@Inject('Test') test: string
   )
    {
 
     console.log(test)
+    console.log(test1)
    
   }
   addNameHandler(nameInput:HTMLInputElement) :void {

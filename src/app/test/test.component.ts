@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef, OnChanges, SimpleChanges  } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef, OnChanges, SimpleChanges, Injector  } from '@angular/core';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-test',
@@ -9,8 +10,13 @@ import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef, O
 export class TestComponent implements OnInit, OnChanges {
   @Input ()  users!: { name:string }[] 
 
-  constructor(private cdRef:ChangeDetectorRef) {
+  constructor(
+    private cdRef:ChangeDetectorRef,
+    private injector: Injector
+    ) {
     this.cdRef.detach()
+    console.log(this.injector.get(this.users[1].name))
+    //this.injector.get(users[1])
    }
   ngOnChanges(changes: SimpleChanges): void {
     //console.log(changes);
